@@ -13,3 +13,14 @@ Train the model using pretrained weights so the network can build on previously 
 When training is complete, evaluate the model on images it has never seen. Study incorrect detections, missed objects, and inaccurate bounding boxes to understand the model’s weaknesses. Finally, run your trained detector on a webcam or video feed and observe real-time predictions. This demonstrates the speed advantage of YOLO, originally introduced by Joseph Redmon, where detection happens in a single pass through the network.
  
 Document your group’s work by describing how you collected your dataset, showing example labeled images, reporting training results, and reflecting on how well your detector performs in real scenarios.
+
+
+**Dataset Collection:**
+Images to be collected for the following
+       a. Red cups
+       b. Blue bottles
+       c. Phones
+
+We used Wiki media (https://commons.wikimedia.org/wiki/Category:Images) to download images for the above 3 classes. We downloaded them to our local machines and uploaded each of our images to a shared google drive to gather all images in one place.
+
+We then used Roboflow (https://roboflow.com) to label these images as Red cups, Blue bottles and phones by using the Annotate feature. The annotated images were put in the Train dataset and those images without relevant objects were put into test dataset.
