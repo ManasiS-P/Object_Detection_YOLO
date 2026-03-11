@@ -1,0 +1,14 @@
+path: /Users/suhaspatil/manasi/Lexicon_Training_Labs/YOLO/Object_Detection_YOLO/Data
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ["Blue Bottle", "Object", "Phone", "Red Cup"]
+
+roboflow:
+  workspace: manasis-workspace-kcvqj
+  project: new-project-cpor5
+  version: 2
+  license: Private
+  url: https://app.roboflow.com/manasis-workspace-kcvqj/new-project-cpor5/2
