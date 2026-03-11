@@ -1,0 +1,4 @@
+Data/
+runs/
+*.pt
+.DS_Store
