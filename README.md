@@ -166,4 +166,4 @@ Below are examples of object detection results produced by the trained YOLOv8 mo
 
 ### Detection Example 1
 
-![Detection Example](results/128px-GMU_Mason_Votes_Election_Day_023_-3004504980-_jpg.rf.ab8bd99677b2a15a63f28f7f73f75509.jpg)
+![Detection Example](results/predict4/128px-GMU_Mason_Votes_Election_Day_023_-3004504980-_jpg.rf.ab8bd99677b2a15a63f28f7f73f75509.jpg)
