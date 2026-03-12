@@ -1,26 +1,169 @@
-In this lab you will work in groups to build your own object detection system using YOLO. You may choose your own group members. The goal is to experience how real computer vision projects are developed collaboratively, from data collection to a working detection model.
-Imagine you are designing vision for a small robot that must recognize everyday objects placed on a table. Your group’s task is to train a model that can detect three object types: a red cup, a blue bottle, and a phone.
- 
-You may create your own dataset by taking between 150 and 300 photos with a phone or laptop camera. Capture the objects from different angles and distances, in different lighting conditions, and with varied backgrounds. Sometimes photograph a single object, and sometimes place multiple objects together so they overlap or partially hide each other. This variation is important because it teaches the model to recognize objects in realistic conditions rather than memorizing one view.
- 
-If you do not have access to a camera, you can download images from the web instead. Search for openly licensed images and gather a similar number of pictures for each object category. Make sure the images show variation in viewpoint, scale, lighting, and background so the dataset remains realistic and balanced.
- 
-Next, label your images by drawing bounding boxes around each object and assigning the correct class name. You can use annotation tools such as LabelImg or Roboflow. Export the annotations in YOLO format and organize your dataset into training and validation folders for both images and labels. This structure allows the model to learn from one set of images and be evaluated on another.
-After your dataset is ready, set up a Python deep learning environment and install the required libraries. You will use the official YOLO implementation provided by Ultralytics. Once installed, connect your dataset by creating a configuration file that defines where your images are stored, how many object classes you have, and the names of those classes.
- 
-Train the model using pretrained weights so the network can build on previously learned visual features. During training, the system learns to draw bounding boxes, classify objects, and estimate detection confidence. Monitor metrics such as loss, precision, recall, and mean Average Precision to understand how performance improves over time.
- 
-When training is complete, evaluate the model on images it has never seen. Study incorrect detections, missed objects, and inaccurate bounding boxes to understand the model’s weaknesses. Finally, run your trained detector on a webcam or video feed and observe real-time predictions. This demonstrates the speed advantage of YOLO, originally introduced by Joseph Redmon, where detection happens in a single pass through the network.
- 
-Document your group’s work by describing how you collected your dataset, showing example labeled images, reporting training results, and reflecting on how well your detector performs in real scenarios.
+Object Detection using YOLOv8
+This project implements an object detection system using Ultralytics YOLOv8.
+The model is trained to detect everyday objects.
 
+Objects Detected
+Red Cup
+Blue Bottle
+Phone
 
-**Dataset Collection:**
-Images to be collected for the following
-       a. Red cups
-       b. Blue bottles
-       c. Phones
+The objective of the project is to simulate a computer vision system for a small robot that can recognize objects in real-world environments.
 
-We used Wiki media (https://commons.wikimedia.org/wiki/Category:Images) to download images for the above 3 classes. We downloaded them to our local machines and uploaded each of our images to a shared google drive to gather all images in one place.
+Project Workflow
+The project was completed in the following stages.
 
-We then used Roboflow (https://roboflow.com) to label these images as Red cups, Blue bottles and phones by using the Annotate feature. The annotated images were put in the Train dataset and those images without relevant objects were put into test dataset.
+1. Dataset Collection
+   Images were collected from openly licensed sources on Wikimedia Commons.
+   The dataset includes images of:
+
+Blue bottles
+Red cups
+Mobile phones
+
+The images contain variation in:
+
+viewing angles
+object distance
+lighting conditions
+backgrounds
+
+This variation helps the model generalize better.
+
+2. Data Annotation
+   Images were labeled using Roboflow.
+   Bounding boxes were drawn around each object and assigned a class label.
+   Classes Used
+
+Blue Bottle
+Red Cup
+Phone
+Object
+
+3. Data Preprocessing and Augmentation
+
+The following preprocessing and augmentation techniques were applied.
+
+Preprocessing - Auto orient images
+
+Augmentations - Rotation, Brightness adjustment
+
+These techniques help improve model robustness under different conditions.
+
+4. Dataset Format
+   The dataset was exported in YOLOv8 format.
+   Dataset structure:
+
+dataset/
+├── train
+│ ├── images
+│ └── labels
+├── valid
+│ ├── images
+│ └── labels
+└── test
+├── images
+└── labels
+
+Dataset configuration file (data.yaml):
+
+nc: 4
+names: ["Blue Bottle", "Object", "Phone", "Red Cup"]
+Dataset Access
+The dataset folder is excluded from the repository using .gitignore because of its large size.
+
+Dataset can be accessed here:
+https://app.roboflow.com/manasis-workspace-kcvqj/new-project-cpor5/2
+
+Model Training
+The model was trained using pretrained weights from YOLOv8.
+
+Training configuration
+
+Model: yolov8n.pt
+Epochs: 50
+Image size: 640
+
+Training was performed in a Jupyter Notebook environment.
+The trained weights are saved as:
+
+runs/detect/yolo_training/weights/best.pt
+
+Inference Scripts
+
+A separate scripts/ folder was created to run object detection using the trained model.
+
+scripts/
+├── image_detection.py
+├── video_detection.py
+└── webcam_detection.py
+Image Detection
+
+Detect objects in a single image.
+python scripts/image_detection.py
+Video Detection
+Detect objects in a video file.
+python scripts/video_detection.py
+Webcam Detection
+Run real-time object detection using the laptop webcam.
+python scripts/webcam_detection.py
+
+This demonstrates the real-time detection capability of YOLO.
+
+Sample Detection Results
+
+Below are examples of object detection results produced by the trained model.
+
+Detection Example 1
+Detection Example 2
+Webcam Detection
+
+Project Structure
+Object_Detection_YOLO
+│
+├── notebooks
+│ └── yolo_training.ipynb
+│
+├── scripts
+│ ├── image_detection.py
+│ ├── video_detection.py
+│ └── webcam_detection.py
+│
+├── results
+│ └── sample detections
+│
+├── data.yaml
+├── requirements.txt
+└── README.md
+Git Ignore
+
+Large files are excluded from the repository.
+
+Data/
+runs/
+\*.pt
+.DS_Store
+Results and Observations
+
+The trained model successfully detects:
+
+Blue bottles
+Red cups
+Phones
+
+The detector performs well on test images and webcam input.
+
+Performance may decrease when:
+
+objects are heavily occluded
+lighting conditions are poor
+objects are very small in the frame
+
+Increasing the dataset size and training for more epochs could improve accuracy.
+
+## Sample Detection Results
+
+Below are examples of object detection results produced by the trained YOLOv8 model.
+
+### Detection Example 1
+
+![Detection Example](results/128px-GMU_Mason_Votes_Election_Day_023_-3004504980-_jpg.rf.ab8bd99677b2a15a63f28f7f73f75509.jpg)
